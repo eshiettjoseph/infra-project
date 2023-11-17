@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// represents data about User data
 type User struct {
 	ID string `json:"id"`
 	Name string `json:"name"`
@@ -12,16 +13,19 @@ type User struct {
 	Age string `json:"age"`
 }
 
+// user slice to seed user data
 var users = []User{
 	{ID: "1", Name: "Joseph Eshiett", Email: "josepheshiett@gmail.com", Age: "22"},
 	{ID: "2", Name: "James Smith", Email: "johnsmith@email.com", Age: "20"},
 	{ID: "3", Name: "John Doe", Email: "johndoe@email.com", Age: "30"},
 }
 
+// responds with list of all users
 func getUsers(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, users)
 }
 
+// responds with users added
 func addUser(c *gin.Context){
 	var newUser User
 	if err := c.BindJSON(&newUser); err != nil {
@@ -31,7 +35,9 @@ func addUser(c *gin.Context){
     c.IndentedJSON(http.StatusCreated, newUser)
 }
 
+// responds with singular user
 func getUser(c *gin.Context){
+	// parameter used for query of data
 	id := c.Param("id")
 
     // Loop through the list of albums, looking for
