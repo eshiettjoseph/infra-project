@@ -7,19 +7,14 @@ import (
 )
 
 // represents data about User data
-type User struct {
-	ID string `json:"id"`
-	Name string `json:"name"`
-	Email string `json:"email"`
-	Age string `json:"age"`
-}
+
 
 // user slice to seed user data
-var users = []User{
-	{ID: "1", Name: "Joseph Eshiett", Email: "josepheshiett@gmail.com", Age: "22"},
-	{ID: "2", Name: "James Smith", Email: "johnsmith@email.com", Age: "20"},
-	{ID: "3", Name: "John Doe", Email: "johndoe@email.com", Age: "30"},
-}
+// var users = []User{
+// 	{ID: "1", Name: "Joseph Eshiett", Email: "josepheshiett@gmail.com", Age: "22"},
+// 	{ID: "2", Name: "James Smith", Email: "johnsmith@email.com", Age: "20"},
+// 	{ID: "3", Name: "John Doe", Email: "johndoe@email.com", Age: "30"},
+// }
 
 // responds with list of all users
 func getUsers(c *gin.Context){
