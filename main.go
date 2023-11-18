@@ -1,6 +1,7 @@
 package main
 
 import (
+	"go-rest-api/initializers"
 	"net/http"
 	"github.com/gin-gonic/gin"
 )
@@ -51,11 +52,18 @@ func getUser(c *gin.Context){
     c.IndentedJSON(http.StatusNotFound, gin.H{"message": "user not found"})
 }
 
+// Run function before main
+func init(){
+	// import initializers
+	initializers.LoadEnvVars()
+	initializers.ConnectToDB()
+
+}
 func main(){
 	router := gin.Default()
 	router.GET("/api/users", getUsers)
 	router.GET("/api/user/:id", getUser)
 	router.POST("api/user/:id", addUser)
 
-	router.Run("localhost:8080")
+	router.Run()
 }
