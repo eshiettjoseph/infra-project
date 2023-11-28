@@ -8,7 +8,7 @@ COPY src .
 
 RUN go mod download
 
-RUN go build -o /out/go-rest-api .
+RUN go build -o ./out/go-rest-api .
 
 FROM alpine:3.18
 
