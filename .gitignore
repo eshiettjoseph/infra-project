@@ -1,2 +1,3 @@
 src/go-rest-api
-terraform
+terraform/.terraform
+terraform/.terraform.lock.hcl
