@@ -49,3 +49,21 @@ resource "aws_iam_role" "ecs_task_execution_role" {
   name               = var.ecs_task_execution_role_name
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
 }
+
+# AWS IAM role policy attachment
+resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
+  role       = aws_iam_role.ecs_task_execution_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+}
+
+# AWS application load balancer
+resource "aws_alb" "application_load_balancer" {
+  name               = var.application_load_balancer_name
+  load_balancer_type = "application"
+  subnets = [
+    "${aws_default_subnet.default_subnet_a.id}",
+    "${aws_default_subnet.default_subnet_b.id}",
+    "${aws_default_subnet.default_subnet_c.id}"
+  ]
+  security_groups = ["${aws_security_group.load_balancer_security_group.id}"]
+}
