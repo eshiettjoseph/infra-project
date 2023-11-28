@@ -67,3 +67,29 @@ resource "aws_alb" "application_load_balancer" {
   ]
   security_groups = ["${aws_security_group.load_balancer_security_group.id}"]
 }
+
+# AWS Security group allow ingress 
+resource "aws_security_group" "load_balancer_security_group" {
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+# Loadbalancer target group
+resource "aws_lb_target_group" "target_group" {
+  name        = var.target_group_name
+  port        = var.container_port
+  protocol    = "HTTP"
+  target_type = "ip"
+  vpc_id      = aws_default_vpc.default_vpc.id
+}
