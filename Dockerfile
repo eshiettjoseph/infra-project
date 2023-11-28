@@ -10,7 +10,7 @@ RUN go mod download
 
 RUN go build -o /out/go-rest-api .
 
-FROM alpine:3.9
+FROM alpine:3.18
 
 COPY --from=build /tmp/go-rest-api/out/go-rest-api /app/go-rest-api
 
