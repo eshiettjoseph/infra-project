@@ -4,8 +4,8 @@ import "gorm.io/gorm"
 
 type User struct {
 	gorm.Model
-	ID uint `json:"id"`
-	Name string `json:"name"`
-	Email *string `json:"email"`
-	Age uint8 `json:"age"`
+	ID uint
+	Name string
+	Email *string
+	Age uint8
 }
