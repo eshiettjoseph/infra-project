@@ -29,3 +29,28 @@ module "ecrRepo" {
 
   ecr_repo_name = local.ecr_repo_name
 }
+
+module "ecsCluster" {
+  source = "./modules/ecs"
+
+  go_rest_api_cluster_name = local.go_rest_api_cluster_name
+  availability_zones    = local.availability_zones
+
+  go_rest_api_task_famliy         = local.go_rest_api_task_famliy
+  ecr_repo_url                 = module.ecrRepo.repository_url
+  container_port               = local.container_port
+  go_rest_api_task_name           = local.go_rest_api_task_name
+  ecs_task_execution_role_name = local.ecs_task_execution_role_name
+
+  application_load_balancer_name = local.application_load_balancer_name
+  target_group_name              = local.target_group_name
+  go_rest_api_service_name          = local.go_rest_api_service_name
+}
+
+module "rds" {
+    source = "./modules/rds"
+    prod_rds_db_name = local.prod_rds_db_name
+    prod_rds_username = local.prod_rds_username
+    prod_rds_password = local.prod_rds_password
+    prod_rds_instance_class = local.prod_rds_instance_class
+}

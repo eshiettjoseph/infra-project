@@ -3,8 +3,6 @@ locals {
     table_name  = "goRestTf"
 
     ecr_repo_name = "go-rest-api-ecr-repo"
-
-
     go_rest_api_cluster_name        = "go-demo-api-cluster"
     availability_zones           = ["us-east-1a", "us-east-1b", "us-east-1c"]
     go_rest_api_task_famliy         = "go-rest-api-task"
@@ -16,4 +14,6 @@ locals {
     target_group_name              = "go-rest-api-alb-tg"
 
     go-rest-api_service_name = "go-rest-api-service"
+
+    prod_rds_password = "josepheshiett"
 }
