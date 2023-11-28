@@ -4,6 +4,7 @@ locals {
 
     ecr_repo_name = "go-rest-api-ecr-repo"
 
+
   #   demo_app_cluster_name        = "demo-app-cluster"
   #   availability_zones           = ["us-east-1a", "us-east-1b", "us-east-1c"]
   #   demo_app_task_famliy         = "demo-app-task"
