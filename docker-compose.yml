@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+    go-rest-api:
+        build: .
+        env_file:
+            - .env
