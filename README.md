@@ -1,6 +1,6 @@
 # Go RESTful API
 ## TODO:
-- Tools used: `github.com/githubnemo/CompileDaemon`, `github.com/joho/godotenv`, `github.com/gin-gonic/gin`, `gorm.io/gorm`, `gorm.io/driver/postgres`
+- Tools used: `github.com/joho/godotenv`, `github.com/gin-gonic/gin`, `gorm.io/gorm`, `gorm.io/driver/postgres`
 - Add postgres database to store data
 - Return current application status
 - Accept JSON data and store in database
