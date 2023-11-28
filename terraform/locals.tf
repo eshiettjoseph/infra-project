@@ -1,8 +1,8 @@
 locals {
-  bucket_name = "go-rest-tf"
-  table_name  = "goRestTf"
+    bucket_name = "go-rest-tf"
+    table_name  = "goRestTf"
 
-  #   ecr_repo_name = "demo-app-ecr-repo"
+    ecr_repo_name = "go-rest-api-ecr-repo"
 
   #   demo_app_cluster_name        = "demo-app-cluster"
   #   availability_zones           = ["us-east-1a", "us-east-1b", "us-east-1c"]
