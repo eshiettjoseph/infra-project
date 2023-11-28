@@ -93,3 +93,50 @@ resource "aws_lb_target_group" "target_group" {
   target_type = "ip"
   vpc_id      = aws_default_vpc.default_vpc.id
 }
+
+# Loadbalancer listener
+resource "aws_lb_listener" "listener" {
+  load_balancer_arn = aws_alb.application_load_balancer.arn
+  port              = "80"
+  protocol          = "HTTP"
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.target_group.arn
+  }
+}
+
+resource "aws_ecs_service" "go_rest_api_service" {
+  name            = var.go_rest_api_service_name
+  cluster         = aws_ecs_cluster.go_rest_api_cluster.id
+  task_definition = aws_ecs_task_definition.go_rest_api_task.arn
+  launch_type     = "FARGATE"
+  desired_count   = 1
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.target_group.arn
+    container_name   = aws_ecs_task_definition.go_rest_api_task.family
+    container_port   = var.container_port
+  }
+
+  network_configuration {
+    subnets          = ["${aws_default_subnet.default_subnet_a.id}", "${aws_default_subnet.default_subnet_b.id}", "${aws_default_subnet.default_subnet_c.id}"]
+    assign_public_ip = true
+    security_groups  = ["${aws_security_group.service_security_group.id}"]
+  }
+}
+
+resource "aws_security_group" "service_security_group" {
+  ingress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    security_groups = ["${aws_security_group.load_balancer_security_group.id}"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
