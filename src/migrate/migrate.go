@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-	initializers.LoadEnvVars()
+	// initializers.LoadEnvVars()
 	initializers.ConnectToDB()
 }
 
