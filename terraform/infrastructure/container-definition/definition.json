@@ -1,0 +1,54 @@
+[
+    {
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "secretOptions": null,
+            "options": {
+                "awslogs-group": "${awslogs_group}",
+                "awslogs-region": "eu-west-1",
+                "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "portMappings": [
+            {
+                "hostPort": "${container_port}",
+                "protocol": "tcp",
+                "containerPort": "${container_port}"
+            }
+        ],
+        "image": "${ecr_repo_url}",
+        "name": "${go_rest_api_task_name}",
+        "environment": [
+            {
+                "name": "PORT",
+                "value": "${container_port}"
+            }, 
+            {
+                "name": "AWS_LOG_GROUP_AND_STREAM",
+                "value": "${aws_log_group_and_stream}"
+            },
+            {
+                "name": "POSTGRES_USER",
+                "value": "${db_user_name}"
+            }
+        ],
+        "secrets": [
+            {
+                "name": "POSTGRES_PASSWORD",
+                "valueFrom": "${postgres_password_arn}"
+            },
+            {
+                "name": "POSTGRES_URL",
+                "valueFrom": "${postgres_endpoint_arn}"
+            },
+            {
+                "name": "REDIS_PASSWORD",
+                "valueFrom": "${redis_token_arn}"
+            },
+            {
+                "name": "REDIS_URL",
+                "valueFrom": "${redis_endpoint_arn}"
+            }
+        ]
+    }
+]
