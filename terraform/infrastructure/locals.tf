@@ -11,4 +11,5 @@ locals {
   container_port                        = 3000
   autoscaling_policy_name               = "go-rest-api-autoscaling-policy"
   aws_log_group_and_stream              = "go-rest-api"
+  ecr_repo_name = "go-rest-api-ecr"
 }
