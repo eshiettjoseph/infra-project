@@ -1,3 +1,6 @@
-src/go-rest-api
-terraform/.terraform
-terraform/.terraform.lock.hcl
+terraform/infrastructure/.terraform
+terraform/infrastructure/.terraform.lock.hcl
+terraform/backend/.terraform
+terraform/backend/.terraform.lock.hcl
+
+

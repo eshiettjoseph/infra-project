@@ -2,6 +2,6 @@
 resource "aws_ssm_parameter" "db_endpoint" {
   name  = "/rds_db/endpoint"
   type  = "SecureString"
-  value = split(":", aws_db_instance.rds-pgs.endpoint)[0]
+  value = split(":", aws_db_instance.rds_pgs.endpoint)[0]
 }
 

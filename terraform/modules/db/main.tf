@@ -29,7 +29,7 @@ resource "aws_secretsmanager_secret_version" "db" {
 }
 
 resource "aws_db_instance" "rds_pgs" {
-  identifier                          = "rds_pgs"
+  identifier                          = "rds-pgs"
   allocated_storage                   = 10
   engine                              = "postgres"
   db_name                             = "postgres"

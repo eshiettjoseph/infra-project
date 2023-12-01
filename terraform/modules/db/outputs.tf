@@ -3,7 +3,7 @@ output "rds-pgs_string_arn" {
 }
 
 output "db_user_name" {
-  value = aws_db_instance.rds-pgs.username
+  value = aws_db_instance.rds_pgs.username
 }
 
 output "db_password_arn" {

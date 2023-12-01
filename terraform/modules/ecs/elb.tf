@@ -2,7 +2,7 @@ resource "aws_lb" "go-rest-api-lb" {
   name               = var.aws_lb_name
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.http_traffic.id]
+  security_groups    = [aws_security_group.lb_sg.id]
   subnets = [
     "${aws_default_subnet.default_subnet_a.id}",
     "${aws_default_subnet.default_subnet_b.id}",

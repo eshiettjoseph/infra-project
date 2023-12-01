@@ -37,14 +37,14 @@ resource "aws_ecs_task_definition" "go-rest-api-task-definition" {
   memory             = 2048
   execution_role_arn = aws_iam_role.go-rest-api-role.arn
   container_definitions = templatefile("container-definition/definition.json", {
-    postgres_password_arn = var.postgres_password_arn
-    postgres_endpoint_arn = var.postgres_endpoint_arn
-    redis_token_arn       = var.redis_auth_arn
-    redis_endpoint_arn    = var.redis_endpoint_arn
-    db_user_name          = var.db_user_name
-    container_name        = var.container_name
-    container_port        = var.container_port
-    awslogs_group         = aws_cloudwatch_log_group.go-rest-api-log-group.name
+    postgres_password_arn    = var.postgres_password_arn
+    postgres_endpoint_arn    = var.postgres_endpoint_arn
+    db_user_name             = var.db_user_name
+    container_name           = var.container_name
+    container_port           = var.container_port
+    ecr_repo_url             = var.ecr_repo_url
+    aws_log_group_and_stream = var.aws_log_group_and_stream
+    awslogs_group            = aws_cloudwatch_log_group.go-rest-api-log-group.name
   })
 }
 

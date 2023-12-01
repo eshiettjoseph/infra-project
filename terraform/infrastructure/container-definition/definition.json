@@ -17,7 +17,7 @@
             }
         ],
         "image": "${ecr_repo_url}",
-        "name": "${go_rest_api_task_name}",
+        "name": "${container_name}",
         "environment": [
             {
                 "name": "PORT",
@@ -40,14 +40,6 @@
             {
                 "name": "POSTGRES_URL",
                 "valueFrom": "${postgres_endpoint_arn}"
-            },
-            {
-                "name": "REDIS_PASSWORD",
-                "valueFrom": "${redis_token_arn}"
-            },
-            {
-                "name": "REDIS_URL",
-                "valueFrom": "${redis_endpoint_arn}"
             }
         ]
     }
