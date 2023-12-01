@@ -32,20 +32,62 @@ resource "aws_ecs_cluster_capacity_providers" "go-rest-api-cp" {
 }
 
 resource "aws_ecs_task_definition" "go-rest-api-task-definition" {
-  family             = "go-rest-api-td"
-  cpu                = 1024
-  memory             = 2048
-  execution_role_arn = aws_iam_role.go-rest-api-role.arn
-  container_definitions = templatefile("container-definition/definition.json", {
-    postgres_password_arn    = var.postgres_password_arn
-    postgres_endpoint_arn    = var.postgres_endpoint_arn
-    db_user_name             = var.db_user_name
-    container_name           = var.container_name
-    container_port           = var.container_port
-    ecr_repo_url             = var.ecr_repo_url
-    aws_log_group_and_stream = var.aws_log_group_and_stream
-    awslogs_group            = aws_cloudwatch_log_group.go-rest-api-log-group.name
-  })
+  family                   = "go-rest-api-td"
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
+  cpu                      = 1024
+  memory                   = 2048
+  execution_role_arn       = aws_iam_role.go-rest-api-role.arn
+  container_definitions    = <<DEFINITION
+    [
+      {
+          "logConfiguration": {
+              "logDriver": "awslogs",
+              "secretOptions": null,
+              "options": {
+                  "awslogs-group": "${aws_cloudwatch_log_group.go-rest-api-log-group.name}",
+                  "awslogs-region": "us-east-1",
+                  "awslogs-stream-prefix": "ecs",
+                  "awslogs-create-group": "true"
+              }
+          },
+          "portMappings": [
+              {
+                  "hostPort": ${var.container_port},
+                  "protocol": "tcp",
+                  "containerPort": ${var.container_port}
+              }
+          ],
+          "image": "${data.aws_ecr_repository.go_rest_api_ecr_repo.repository_url}",
+          "name": "${var.container_name}",
+          "environment": [
+              {
+                  "name": "PORT",
+                  "value": "${var.container_port}"
+              }, 
+              {
+                  "name": "AWS_LOG_GROUP_AND_STREAM",
+                  "value": "${var.aws_log_group_and_stream}"
+              },
+              {
+                  "name": "POSTGRES_USER",
+                  "value": "${var.db_user_name}"
+              },
+              {
+                  "name": "DB_URL",
+                  "value": "host=${data.aws_db_instance.rds_pgs.address} user=${data.aws_db_instance.rds_pgs.master_username} password=${POSTGRES_PASSWORD} dbname=${data.aws_db_instance.rds_pgs.db_name} port=5432 sslmode=require"
+              }              
+          ],
+          "secrets": [
+              {
+                  "name": "POSTGRES_PASSWORD",
+                  "valueFrom": "${var.postgres_password_arn}"
+              }
+
+          ]
+      }
+    ]
+    DEFINITION
 }
 
 resource "aws_ecs_service" "go-rest-api-service" {

@@ -1,5 +1,5 @@
 resource "aws_security_group" "lb_sg" {
-  name        = "ecs_service_sg"
+  name        = "lb_sg"
   description = "Allow http traffic"
   vpc_id      = aws_default_vpc.default_vpc.id
 

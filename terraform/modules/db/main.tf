@@ -9,11 +9,11 @@ resource "aws_security_group" "rds_sg" {
   vpc_id = aws_default_vpc.default_vpc.id
 
   ingress {
-    description = "connection form the VPC"
+    description = "connection from the VPC"
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -35,12 +35,13 @@ resource "aws_db_instance" "rds_pgs" {
   db_name                             = "postgres"
   engine_version                      = "15.3"
   instance_class                      = "db.t3.micro"
-  username                            = "go-rest-api"
+  username                            = "go_rest_api"
   password                            = aws_secretsmanager_secret_version.db.secret_string
   multi_az                            = true
   db_subnet_group_name                = aws_db_subnet_group.test_db_subnet_group.name
   vpc_security_group_ids              = [aws_security_group.rds_sg.id]
   backup_retention_period             = 35
+  parameter_group_name                = "default.postgres15"
   backup_window                       = "21:00-23:00"
   iam_database_authentication_enabled = true
   final_snapshot_identifier           = false

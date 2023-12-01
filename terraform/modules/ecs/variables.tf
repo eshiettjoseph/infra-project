@@ -64,6 +64,6 @@ variable "aws_lb_target_group_name" {
   description = "AWS Loadbalancer target group name"
 }
 
-variable "ecr_repo_url" {
-  description = "ECR Repo URL"
+variable "ecr_repo_name" {
+  description = "ECR Repo name"
 }

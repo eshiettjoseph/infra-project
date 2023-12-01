@@ -15,14 +15,8 @@ module "ecs" {
   container_port                        = local.container_port
   autoscaling_policy_name               = local.autoscaling_policy_name
   aws_log_group_and_stream              = local.aws_log_group_and_stream
-  ecr_repo_url                          = module.ecr.repository_url
+  ecr_repo_name                         = local.ecr_repo_name
   availability_zones                    = local.availability_zones
-}
-
-module "ecr" {
-  source = "../modules/ecr"
-
-  ecr_repo_name = local.ecr_repo_name
 }
 
 module "rds" {
