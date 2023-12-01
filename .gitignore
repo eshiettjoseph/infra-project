@@ -1,6 +1,8 @@
 terraform/infrastructure/.terraform
 terraform/infrastructure/.terraform.lock.hcl
+terraform/infrastructure/terraform.tfstate
 terraform/backend/.terraform
 terraform/backend/.terraform.lock.hcl
+terraform/backend/terraform.tfstate
 
 
