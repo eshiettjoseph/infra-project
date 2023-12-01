@@ -74,13 +74,26 @@ resource "aws_ecs_task_definition" "go-rest-api-task-definition" {
                   "value": "${var.db_user_name}"
               },
               {
-                  "name": "DB_URL",
-                  "value": "host=${data.aws_db_instance.rds_pgs.address} user=${data.aws_db_instance.rds_pgs.master_username} password=${POSTGRES_PASSWORD} dbname=${data.aws_db_instance.rds_pgs.db_name} port=5432 sslmode=require"
-              }              
+                  "name": "DB_HOST",
+                  "value": "${data.aws_db_instance.rds_pgs.address}"
+
+              },
+              {
+                  "name": "DB_USER",
+                  "value": "${data.aws_db_instance.rds_pgs.master_username}"
+              },
+              {
+                  "name": "DB_NAME",
+                  "value": "${data.aws_db_instance.rds_pgs.db_name}"
+              },
+              {
+                  "name": "SSL_MODE",
+                  "value": "require"
+              }           
           ],
           "secrets": [
               {
-                  "name": "POSTGRES_PASSWORD",
+                  "name": "DB_PASSWORD",
                   "valueFrom": "${var.postgres_password_arn}"
               }
 
