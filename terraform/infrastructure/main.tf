@@ -17,6 +17,7 @@ module "ecs" {
   aws_log_group_and_stream              = local.aws_log_group_and_stream
   ecr_repo_name                         = local.ecr_repo_name
   availability_zones                    = local.availability_zones
+  aws_db_instance                       = module.rds.rds-pgs_string_arn
 }
 
 module "rds" {

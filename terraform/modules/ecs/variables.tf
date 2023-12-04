@@ -67,3 +67,7 @@ variable "aws_lb_target_group_name" {
 variable "ecr_repo_name" {
   description = "ECR Repo name"
 }
+
+variable "aws_db_instance" {
+  description = "AWS DB instance"
+}
