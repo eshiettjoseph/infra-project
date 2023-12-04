@@ -4,6 +4,5 @@ terraform/infrastructure/terraform.tfstate
 terraform/backend/.terraform
 terraform/backend/.terraform.lock.hcl
 terraform/backend/terraform.tfstate
-src/.env
 
 
