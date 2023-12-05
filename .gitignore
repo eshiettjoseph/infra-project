@@ -7,4 +7,4 @@ terraform/backend/terraform.tfstate
 terraform/ecr/.terraform
 terraform/ecr/.terraform.lock.hcl
 terraform/ecr/terraform.tfstate
-
+terraform/ecr/ecr.tfvars
