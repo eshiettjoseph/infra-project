@@ -15,7 +15,13 @@ terraform {
       version = "~> 4.0"
     }
   }
+  cloud {
+    organization = "REPLACE_ME"
 
+    workspaces {
+      name = "gh-actions-demo"
+    }
+  }
 }
 
 provider "aws" {

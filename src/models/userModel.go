@@ -5,7 +5,7 @@ import "gorm.io/gorm"
 type User struct {
 	gorm.Model
 	ID uint
-	Name string
+	Name string 
 	Email *string
 	Age uint8
 }

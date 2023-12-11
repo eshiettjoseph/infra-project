@@ -38,12 +38,12 @@ resource "aws_iam_role_policy_attachment" "rds_policy_attachment" {
   policy_arn = aws_iam_policy.rds_access_policy.arn
 }
 
-resource "aws_iam_role_policy_attachment" "secret_manager_policy_attachment"{
+resource "aws_iam_role_policy_attachment" "secret_manager_policy_attachment" {
   role       = aws_iam_role.go-rest-api-role.name
   policy_arn = aws_iam_policy.secret_manager_policy.arn
 }
 
-resource "aws_iam_role_policy_attachment" "ssm_parameter_policy_attachment"{
+resource "aws_iam_role_policy_attachment" "ssm_parameter_policy_attachment" {
   role       = aws_iam_role.go-rest-api-role.name
   policy_arn = aws_iam_policy.ssm_parameter_policy.arn
 }
