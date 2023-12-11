@@ -23,7 +23,8 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      src: ${{ steps.changes.outputs.src }}
+      backend: ${{ steps.changes.outputs.backend }}
+      ecr: ${{ steps.changes.outputs.ecr }}
       infra: ${{ steps.changes.outputs.infra }}
     steps:
     - uses: actions/checkout@v3
