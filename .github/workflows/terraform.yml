@@ -23,12 +23,6 @@ jobs:
       ecr: ${{ steps.changes.outputs.ecr }}
       infra: ${{ steps.changes.outputs.infra }}
     steps:
-    - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          # terraform_version: 0.13.0:
-          cli_config_credentials_token: ${{ secrets.TERRAFORM_API_KEY }}
-          
     - uses: actions/checkout@v3
     - uses: dorny/paths-filter@v2
       id: changes
@@ -49,6 +43,11 @@ jobs:
       run:
         working-directory: terraform/backend
     steps:
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          # terraform_version: 0.13.0:
+          cli_config_credentials_token: ${{ secrets.TERRAFORM_API_KEY }}
       - uses: actions/checkout@v3
       - name: Terraform Format
         id: fmt
