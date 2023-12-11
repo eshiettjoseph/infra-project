@@ -7,7 +7,7 @@ terraform {
       version = "~> 4.0"
     }
   }
-  loud {
+  cloud {
     organization = "joeshiett"
 
     workspaces {
