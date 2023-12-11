@@ -45,7 +45,7 @@ jobs:
     if: ${{ needs.changes.outputs.backend == 'true' }}
     defaults:
       run:
-        working-directory: ./terraform/backend
+        working-directory: terraform/backend
     steps:
       - name: Terraform Format
         id: fmt
