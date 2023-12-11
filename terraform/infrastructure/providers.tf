@@ -16,10 +16,10 @@ terraform {
     }
   }
   cloud {
-    organization = "REPLACE_ME"
+    organization = "joeshiett"
 
     workspaces {
-      name = "gh-actions-demo"
+      name = "joeshiett"
     }
   }
 }

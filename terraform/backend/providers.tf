@@ -7,7 +7,13 @@ terraform {
       version = "~> 4.0"
     }
   }
+  loud {
+    organization = "joeshiett"
 
+    workspaces {
+      name = "joeshiett"
+    }
+  }
 }
 
 provider "aws" {
