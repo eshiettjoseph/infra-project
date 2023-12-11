@@ -6,6 +6,7 @@ terraform {
 
     workspaces {
       name = "joeshiett"
+    }
   }
 
   required_providers {
@@ -14,7 +15,6 @@ terraform {
       version = "~> 4.0"
     }
   }
-}
 }
 
 provider "aws" {
