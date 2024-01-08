@@ -8,3 +8,4 @@ terraform/ecr/.terraform
 terraform/ecr/.terraform.lock.hcl
 terraform/ecr/terraform.tfstate
 terraform/ecr/ecr.tfvars
+terraform/backend/terraform.tfstate.backup

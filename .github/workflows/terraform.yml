@@ -60,6 +60,7 @@ jobs:
           cat > ecr.tfvars <<EOF
           ecr_repo_name="${{ vars.REPO_NAME }}" 
           EOF
+          ls 
 
       - name: Terraform Init
         id: init
