@@ -54,12 +54,12 @@ jobs:
         id: fmt
         run: terraform fmt -check
 
-      - name: Setup terraform variables
-        id: vars
-        run: |-
-          cat > ecr.tfvars <<EOF
-          ecr_repo_name="${{ vars.REPO_NAME }}" 
-          EOF
+      # - name: Setup terraform variables
+      #   id: vars
+      #   run: |-
+      #     cat > ecr.tfvars <<EOF
+      #     ecr_repo_name="${{ vars.REPO_NAME }}" 
+      #     EOF
         
 
       - name: Terraform Init
