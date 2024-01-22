@@ -1,4 +1,4 @@
 variable "ecr_repo_name" {
-  description = "ECR RepoName"
+  description = "ECR Repo   Name"
   type        = string
 }
