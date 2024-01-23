@@ -54,14 +54,6 @@ jobs:
         id: fmt
         run: terraform fmt -check
 
-      - name: Setup terraform variables
-        id: vars
-        run: |-
-          cat > ecr.tfvars <<EOF
-          ecr_repo_name="${{ vars.REPO_NAME }}" 
-          EOF
-        
-
       - name: Terraform Init
         id: init
         run: terraform init
@@ -114,4 +106,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -var="${{ vars.REPO_NAME }}" -auto-approve -input=false
+        run: terraform apply -var="ecr_repo_name=${{ vars.REPO_NAME }}" -auto-approve -input=false
