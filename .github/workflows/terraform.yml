@@ -113,7 +113,5 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        env: 
-          TF_VAR_ecr: ${{ secrets.REPO_NAME }}
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -var="${{ vars.REPO_NAME }}" -auto-approve -input=false
