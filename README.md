@@ -19,6 +19,7 @@ This project is designed with efficiency and scalability in mind.
     These workspaces variables are required for the `terraform.yml` workflow to run.
     ![terraform cloud](images/Screenshot%202024-01-24%20at%2014.36.02.png)
 
+- Manually trigger `deploy.yaml` workflow or tag commit with version format `v*.*.*`,to create build artifact to be used by ECS.
 
 
 ## Author
