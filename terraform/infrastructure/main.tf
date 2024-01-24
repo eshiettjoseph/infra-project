@@ -1,5 +1,5 @@
 module "ecs" {
-  source                                = "../modules/ecs"
+  source                                = "./modules/ecs"
   aws_lb_name                           = local.aws_lb_name
   aws_lb_target_group_name              = local.aws_lb_target_group_name
   go_rest_api_policy_name               = local.go_rest_api_policy_name
@@ -21,6 +21,6 @@ module "ecs" {
 }
 
 module "rds" {
-  source             = "../modules/db"
+  source             = "./modules/db"
   availability_zones = local.availability_zones
 }
