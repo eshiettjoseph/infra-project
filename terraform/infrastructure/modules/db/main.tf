@@ -17,14 +17,14 @@ resource "aws_security_group" "rds_sg" {
   }
 }
 
-resource "aws_secretsmanager_secret" "db_auth" {
-  name                    = "db-auth"
+resource "aws_secretsmanager_secret" "rds_auth" {
+  name                    = "rds-auth"
   recovery_window_in_days = 0
   #checkov:skip=CKV2_AWS_57: Disabled Secrets Manager secrets automatic rotation
 }
 
 resource "aws_secretsmanager_secret_version" "db" {
-  secret_id     = aws_secretsmanager_secret.db_auth.id
+  secret_id     = aws_secretsmanager_secret.rds_auth.id
   secret_string = random_password.db_password.result
 }
 
