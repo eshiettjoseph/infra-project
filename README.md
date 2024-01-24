@@ -9,17 +9,17 @@ This project is designed with efficiency and scalability in mind.
 - *PostgreSQL Database:* Provides robust data storage for the Go Restful API, ensuring data integrity and quick access.
 
 # How to Deploy Infrastructure
-- Initialize backend
-    - `make init_backend`
-- View backend plan
-    - `make plan_backend`
-- Deploy backend
-    - `make deploy_backend`
+*Makefile deprecated*
+- In your terraform cloud account at acccessible at [app.terraform.io](https://app.terraform.io) create an organization and workspace see the following [documentation](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-sign-up) for more information.
+- Navigate to Variables > Add variable. Add 3 workspace variables with the category, `environment` for AWS credentials environment variables, and `terraform` category for `ecr_repo_name`.
+   - `AWS_ACCESS_KEY_ID` 
+   - `AWS_SECRET_ACCESS_KEY`
+   - `ecr_repo_name`
 
-> **_Note:_** Ensure uniqueness of the state bucket. If a `bucket already exists` error occurs, modify the bucket value in `main.tf` and and the `provider.tf` in `terraform/backend`, `terraform/ecr` and `terraform/infrastructure` subdirectories.
+    These workspaces variables are required for the `terraform.yml` workflow to run.
+    ![terraform cloud](images/Screenshot%202024-01-24%20at%2014.36.02.png)
 
-- Initialize Infrastructure(ECR, ECS, and RDS)
-    - `make deploy_all`
+
 
 ## Author
 - Joseph Eshiett - [Github](https://github.com/eshiettjoseph)
@@ -35,5 +35,5 @@ Looking for a DevOps Engineer to build your next infrastructure? Get in touch: [
 
 - Implement cache layer with Redis
 - Implement logging, send logs to AWS cloudwatch
-- Github workflow to test code, and deploy infrastructure via terraform
+- Github workflow to test code
 

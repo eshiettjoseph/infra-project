@@ -58,8 +58,6 @@ jobs:
         run: terraform validate -no-color
 
       - name: Terraform Plan
-        env: 
-          TF_VAR_ecr: ${{ vars.REPO_NAME }}
         id: plan
         if: github.event_name == 'pull_request'
         run: terraform plan -no-color -input=false
