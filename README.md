@@ -17,10 +17,11 @@ This project is designed with efficiency and scalability in mind.
    - `ecr_repo_name`
 
     These workspaces variables are required for the `terraform.yml` workflow to run.
-    ![terraform cloud](images/Screenshot%202024-01-24%20at%2014.36.02.png)
+    ![terraform cloud](images/terraform_cloud.png)
 
 - Manually trigger `deploy.yaml` workflow or tag commit with version format `v*.*.*`,to create build artifact to be used by ECS.
-
+- When done Queue destroy plan. On terraform cloud, navigate **Projects & Workspaces** > *[YOUR WORKSPACE]* > **Settings** > **Destruction and Deletion** > **Manually destroy**
+    ![Destroy resources](images/destroy_resources.png)
 
 ## Author
 - Joseph Eshiett - [Github](https://github.com/eshiettjoseph)
