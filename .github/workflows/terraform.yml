@@ -111,7 +111,7 @@ jobs:
     if: ${{ needs.changes.outputs.infra == 'true' }}
     defaults:
       run:
-        working-directory: terraform
+        working-directory: terraform/infrastructure
     steps:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
