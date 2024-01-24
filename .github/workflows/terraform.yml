@@ -107,7 +107,7 @@ jobs:
 
   infra:
     runs-on: ubuntu-latest
-    needs: ecr
+    needs: changes
     if: ${{ needs.changes.outputs.infra == 'true' }}
     defaults:
       run:
