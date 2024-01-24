@@ -8,7 +8,7 @@ resource "aws_ecr_repository" "go_rest_api_ecr_repo" {
 }
 
 module "ecs" {
-  depends_on = aws_ecr_repository.go_rest_api_ecr_repo
+  depends_on                            = aws_ecr_repository.go_rest_api_ecr_repo
   source                                = "./modules/ecs"
   aws_lb_name                           = local.aws_lb_name
   aws_lb_target_group_name              = local.aws_lb_target_group_name
