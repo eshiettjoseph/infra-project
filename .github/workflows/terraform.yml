@@ -1,5 +1,8 @@
 on:
+  workflow_dispatch:
   push:
+    paths:
+      - terraform/infrastructure
     branches:
       - main
     pull_request:
@@ -14,27 +17,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      
-  # Don't trigger associated workflow until changes made to filters as set below
-  changes:
-    runs-on: ubuntu-latest
-    outputs:
-      backend: ${{ steps.changes.outputs.backend }}
-      ecr: ${{ steps.changes.outputs.ecr }}
-      infra: ${{ steps.changes.outputs.infra }}
-    steps:
-    - uses: actions/checkout@v3
-    - uses: dorny/paths-filter@v2
-      id: changes
-      with:
-        filters: |
-          infra:
-            - 'terraform/infrastructure/**'    
-
   infra:
     runs-on: ubuntu-latest
-    needs: changes
-    if: ${{ needs.changes.outputs.infra == 'true' }}
     defaults:
       run:
         working-directory: terraform/infrastructure
