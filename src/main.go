@@ -43,7 +43,7 @@ var (
 func main(){
 
 	router := gin.Default()
-	
+
 	// Middleware to collect metrics
 	router.Use(func(c *gin.Context) {
 		path := c.Request.URL.Path
@@ -51,6 +51,7 @@ func main(){
 		c.Next() // Process request
 		httpRequestsTotal.WithLabelValues(path).Inc()
 		timer.ObserveDuration()
+	})
 
 	router.POST("/api/user/", controllers.AddUser)
 	// Prometheus metrics endpoint
