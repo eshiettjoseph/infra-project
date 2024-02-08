@@ -1,4 +1,4 @@
-# Go RESTful API
+# Infrastructure Project
 This repository contains code that sets up a Terraform-managed infrastructure comprising of an ECR, ECS, and RDS pivotal in deploying and managing a Go Restful API. 
 
 # Infrastructure Overview
