@@ -31,11 +31,3 @@ This project is designed with efficiency and scalability in mind.
 
 ## Hire me
 Looking for a DevOps Engineer to build your next infrastructure? Get in touch: [josepheshiett@gmail.com](mailto:josepheshiett@gmail.com)
-
-
-## TODO:
-
-- Implement cache layer with Redis
-- Implement logging, send logs to AWS cloudwatch
-- Github workflow to test code
-
